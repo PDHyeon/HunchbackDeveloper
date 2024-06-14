@@ -1,0 +1,54 @@
+{
+    "name": "PlayerInput",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "ef181bb2-a034-4d91-8c8d-c29a96d7dc38",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "8df5bf4d-1538-4213-83f6-119b06f437ff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PowerClick",
+                    "type": "Button",
+                    "id": "96b8d8da-21fe-4b20-b499-769ce589fa15",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "316cb539-717e-452e-8a58-f56fa9933da4",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86edfe13-29a1-4ae7-bd3d-61bb11ff7927",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PowerClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -6,10 +6,12 @@ public class Player : MonoBehaviour
 {
     // 플레이어와 관련된 여러 정보를 들고 있는 클래스
     // ex) 플레이어 상태 등
-    PlayerStat playerStat;
+    public PlayerStat playerStat;
+    public PlayerController playerController;
 
     private void Awake()
     {
         playerStat = GetComponent<PlayerStat>();
+        playerController = GetComponent<PlayerController>();
     }
 }

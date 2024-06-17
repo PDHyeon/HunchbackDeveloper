@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +16,6 @@ public class GameManager : MonoBehaviour
     public Monster monster;
 
     HealthSystem monsterHealthSystem;
-    [SerializeField] float autoAttackDealyTime = 1f;
 
     private void Awake()
     {
@@ -33,15 +35,22 @@ public class GameManager : MonoBehaviour
 
     public void PlayerClick(InputAction.CallbackContext context)
     {
-        monsterHealthSystem.ChangeHealth(player.attack);
+        Vector3 mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, transform.forward, 10);
+        if(hit)
+        {
+            monsterHealthSystem.ChangeHealth(player.playerStat.attackDamage);
+        }
     }
 
     IEnumerator AutoClick()
     {
         while (true)
         {
-            monsterHealthSystem.ChangeHealth(player.attack);
-            yield return new WaitForSeconds(autoAttackDealyTime);
+            monsterHealthSystem.ChangeHealth(player.playerStat.autoAttackDamage);
+            yield return new WaitForSeconds(player.playerStat.autoAttackSpeed);
         }
     }
 }

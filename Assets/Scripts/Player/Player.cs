@@ -12,8 +12,6 @@ public class Player : MonoBehaviour
     public float gold { get; private set; } = 0f;
     float goldMultiplier = 1f;
 
-    public float attack { get; private set; } = 1f;
-
     private void Awake()
     {
         playerStat = GetComponent<PlayerStat>();

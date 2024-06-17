@@ -32,7 +32,6 @@ public class Monster : MonoBehaviour
     public void UpdateHPBarUI()
     {
         hpBar.value = currentHP / maxHP;
-        Debug.Log(hpBar.value);
     }
 
     public void ResetHPBarUI()

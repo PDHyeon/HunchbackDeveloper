@@ -4,28 +4,42 @@ using UnityEngine;
 
 public class PlayerStat : CharacterStat
 {
-    // 공격력을 x배 시켜주는 기능을 위해
-    public float attackMultiplier { get; private set; } = 1f;
-    public float autoAttackDamage { get; private set; } = 0f;
+    float attackIncreaseAmount = 1f;
+    float attackIncreaseAmountMultiplier = 1.1f;
+
+    public float autoAttackDamage { get; private set; }
+    float autoAttackIncreaseAmount = 0.5f;
+    float autoattackIncreaseAmountMultiplier = 1.05f;
     public float autoAttackSpeed { get; private set; } = 1f;
+    float autoAttackSpeedIncreseAmount = 0.98f;
 
 
-    public virtual void ModifyDamageUpgrade(float value)
+    public void ModifyDamageUpgrade()
     {
-        attackDamage += value;
-    }
-    public void AddAttackMultiplier(float multiplierValue)
-    {
-        attackMultiplier += multiplierValue;
+        attackDamage += attackIncreaseAmount;
+        ApplyAttackMultiplier();
     }
 
-    public void AddAutoAttackDamage(float damage)
+    // 다음 공격력 증가량을 배가 시키기 위해 사용함.
+    public void ApplyAttackMultiplier()
     {
-        autoAttackDamage += damage;
+        attackIncreaseAmount *= attackIncreaseAmountMultiplier;
     }
 
-    public void AddAutoAttackSpeed(float attackSpeed)
+    // 자동 공격 데미지 증가
+    public void AddAutoAttackDamage()
     {
-        autoAttackSpeed += attackSpeed;
+        autoAttackDamage += autoAttackIncreaseAmount;
+        ApplyAutoAttackMultiplier();
+    }
+
+    public void ApplyAutoAttackMultiplier()
+    {
+        autoAttackIncreaseAmount *= autoattackIncreaseAmountMultiplier;
+    }
+    // 자동 공격의 빈도를 업그레이드 할 때 적용
+    public void AddAutoAttackSpeed()
+    {
+        autoAttackSpeed *= autoAttackSpeedIncreseAmount;
     }
 }

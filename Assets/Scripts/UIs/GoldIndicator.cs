@@ -13,8 +13,8 @@ public class GoldIndicator : MonoBehaviour
         GameManager.Instance.monster.monsterHelthSystem.OnDeath += UpdateGoldUI;
     }
 
-    private void UpdateGoldUI()
+    public void UpdateGoldUI()
     {
-        goldText.text = ((int)GameManager.Instance.player.gold).ToString();
+        goldText.text = ((int)GameManager.Instance.player.gold).ToString() + " G";
     }
 }

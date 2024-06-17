@@ -22,8 +22,11 @@ public class HealthSystem : MonoBehaviour
             return;
         }
 
-        OnDamage?.Invoke();
-        monster.currentHP -= value;
+        if (value > 0)
+        {
+            OnDamage?.Invoke();
+            monster.currentHP -= value;
+        }   
     }
     void CallDeath()
     {

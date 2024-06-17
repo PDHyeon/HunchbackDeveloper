@@ -11,8 +11,8 @@ public class Monster : MonoBehaviour
     public Slider hpBar;
 
     private SpriteRenderer monsterSprite;
-    public float currentHP { get; set; } = 100f;
-    public float maxHP { get; private set; } = 100f;
+    public float currentHP { get; set; } = 50f;
+    public float maxHP { get; private set; } = 50f;
 
     private float hpMultiplier = 1.1f;
 

@@ -20,6 +20,5 @@ public class MonsterAnimation : MonoBehaviour
     private void OnHit()
     {
         animator.SetTrigger(isAttacked);
-        Debug.Log("asfas");
     }
 }

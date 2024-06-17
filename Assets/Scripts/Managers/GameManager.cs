@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Monster monster;
 
     HealthSystem monsterHealthSystem;
+    [SerializeField] float autoAttackDealyTime = 0.1f;
 
     private void Awake()
     {
@@ -22,19 +23,25 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
         monsterHealthSystem = monster.monsterHelthSystem;
-
-        Debug.Log(monster);
     }
 
     private void Start()
     {
         player.playerController.playerActions.Click.started += PlayerClick;
+        StartCoroutine(AutoClick());
     }
-
 
     public void PlayerClick(InputAction.CallbackContext context)
     {
         monsterHealthSystem.ChangeHealth(player.attack);
-        Debug.Log("클릭 처리");
+    }
+
+    IEnumerator AutoClick()
+    {
+        while (true)
+        {
+            monsterHealthSystem.ChangeHealth(player.attack);
+            yield return new WaitForSeconds(autoAttackDealyTime);
+        }
     }
 }

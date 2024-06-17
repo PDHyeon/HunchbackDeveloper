@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public PlayerStat playerStat;
     public PlayerController playerController;
 
-    float gold = 0;
+    public float gold { get; private set; } = 0f;
     float goldMultiplier = 1f;
 
     public float attack { get; private set; } = 1f;
@@ -18,5 +18,10 @@ public class Player : MonoBehaviour
     {
         playerStat = GetComponent<PlayerStat>();
         playerController = GetComponent<PlayerController>();
+    }
+
+    public void GetGold(float gainAmount)
+    {
+        gold += gainAmount;
     }
 }

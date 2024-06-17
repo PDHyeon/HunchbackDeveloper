@@ -14,6 +14,12 @@ public class Monster : MonoBehaviour
     public float currentHP { get; set; } = 100f;
     public float maxHP { get; private set; } = 100f;
 
+    private float hpMultiplier = 1.1f;
+
+    private float rewardGold = 100;
+
+    private float rewardMultiplier = 1.2f;
+
     private void Awake()
     {
         monsterHelthSystem = GetComponent<HealthSystem>();
@@ -30,13 +36,20 @@ public class Monster : MonoBehaviour
 
     public void ResetHPBarUI()
     {
+        ResetHP();
         hpBar.value = 1;
+    }
+
+    public void ResetHP()
+    {
+        maxHP *= hpMultiplier;
+        currentHP = maxHP;
     }
 
     public void OnDeath()
     {
-        Destroy(gameObject);
         ResetHPBarUI();
-        // Á×¾úÀ» ¶§ Ã³¸® + °ñµå Áö±Þ
+        GameManager.Instance.player.GetGold(rewardGold);
+        rewardGold *= rewardMultiplier;
     }
 }

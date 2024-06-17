@@ -9,6 +9,11 @@ public class Player : MonoBehaviour
     public PlayerStat playerStat;
     public PlayerController playerController;
 
+    float gold = 0;
+    float goldMultiplier = 1f;
+
+    public float attack { get; private set; } = 1f;
+
     private void Awake()
     {
         playerStat = GetComponent<PlayerStat>();

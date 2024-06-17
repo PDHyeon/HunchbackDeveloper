@@ -1,22 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-    Player player;
+    public static GameManager Instance;
+
+    public Player player;
+
+    public Monster monster;
+
+    HealthSystem monsterHealthSystem;
+
+    private void Awake()
+    {
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
+        monsterHealthSystem = monster.monsterHelthSystem;
+
+        Debug.Log(monster);
+    }
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        player.playerController.playerActions.Click.started += OnClick;
+        player.playerController.playerActions.Click.started += PlayerClick;
     }
 
-    public void OnClick(InputAction.CallbackContext context)
+
+    public void PlayerClick(InputAction.CallbackContext context)
     {
-        // 몬스터에게 데미지를 적용 
-        // 몬스터 체력 감소 (공격력 적용해야 함.)
+        monsterHealthSystem.ChangeHealth(player.attack);
         Debug.Log("클릭 처리");
     }
 }

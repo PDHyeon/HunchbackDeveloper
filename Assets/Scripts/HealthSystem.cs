@@ -5,6 +5,7 @@ public class HealthSystem : MonoBehaviour
 {
     public Action OnDamage;
     public Action OnDeath;
+    public Action OnKillFailed;
 
     Monster monster;
 

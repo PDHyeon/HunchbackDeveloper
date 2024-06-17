@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -19,6 +17,10 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
+        if (leftTime < 0)
+        {
+            TimeOver();
+        }
         leftTime -= Time.deltaTime;
         timeText.text = leftTime.ToString("F2");
     }
@@ -26,5 +28,11 @@ public class Timer : MonoBehaviour
     private void ResetTime()
     {
         leftTime = limitTime;
+    }
+
+    public void TimeOver()
+    {
+        ResetTime();
+        GameManager.Instance.monster.monsterHelthSystem.OnKillFailed?.Invoke();
     }
 }

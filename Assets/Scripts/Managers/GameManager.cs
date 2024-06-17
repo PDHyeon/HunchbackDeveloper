@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public Monster monster;
 
     HealthSystem monsterHealthSystem;
-    [SerializeField] float autoAttackDealyTime = 0.1f;
+    [SerializeField] float autoAttackDealyTime = 1f;
 
     private void Awake()
     {

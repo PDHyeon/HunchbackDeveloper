@@ -15,6 +15,6 @@ public class GoldIndicator : MonoBehaviour
 
     private void UpdateGoldUI()
     {
-        goldText.text = GameManager.Instance.player.gold.ToString();
+        goldText.text = ((int)GameManager.Instance.player.gold).ToString();
     }
 }

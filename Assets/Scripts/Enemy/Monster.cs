@@ -26,6 +26,7 @@ public class Monster : MonoBehaviour
         monsterHelthSystem.OnDamage += UpdateHPBarUI;
         monsterHelthSystem.OnDeath += OnDeath;
         monsterSprite = GetComponent<SpriteRenderer>();
+        monsterHelthSystem.OnKillFailed += KillFailed;
     }
 
     public void UpdateHPBarUI()
@@ -40,9 +41,9 @@ public class Monster : MonoBehaviour
         hpBar.value = 1;
     }
 
-    public void ResetHP()
+    public void ResetHP(bool killFailed = false)
     {
-        maxHP *= hpMultiplier;
+        if(!killFailed) maxHP *= hpMultiplier;
         currentHP = maxHP;
     }
 
@@ -51,5 +52,10 @@ public class Monster : MonoBehaviour
         ResetHPBarUI();
         GameManager.Instance.player.GetGold(rewardGold);
         rewardGold *= rewardMultiplier;
+    }
+
+    public void KillFailed()
+    {
+        ResetHP(true);
     }
 }

@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public PlayerStat playerStat;
     public PlayerController playerController;
 
-    public float gold { get; private set; } = 0f;
+    public float gold { get; set; } = 0f;
     float goldMultiplier = 1f;
 
     private void Awake()

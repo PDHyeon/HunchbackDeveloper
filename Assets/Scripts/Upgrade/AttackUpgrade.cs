@@ -6,16 +6,19 @@ public class AttackUpgrade : MonoBehaviour
 {
     public void ClickAttackUpgradeButton()
     {
-        GameManager.Instance.player.playerStat.ModifyDamageUpgrade();
+        if(GameManager.Instance.CheckCost())
+            GameManager.Instance.player.playerStat.ModifyDamageUpgrade();
     }
 
     public void ClickAutoAttackDamageUpgradeButton()
     {
-        GameManager.Instance.player.playerStat.AddAutoAttackDamage();
+        if (GameManager.Instance.CheckCost())
+            GameManager.Instance.player.playerStat.AddAutoAttackDamage();
     }
 
     public void ClickAutoAttackSpeedUpgradeButton()
     {
-        GameManager.Instance.player.playerStat.AddAutoAttackSpeed();
+        if (GameManager.Instance.CheckCost())
+            GameManager.Instance.player.playerStat.AddAutoAttackSpeed();
     }
 }

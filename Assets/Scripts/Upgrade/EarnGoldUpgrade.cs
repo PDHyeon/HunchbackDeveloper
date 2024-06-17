@@ -18,14 +18,17 @@ public class EarnGoldUpgrade : MonoBehaviour
     }
     public void ClickUpgradeAutoIncreasingGold()
     {
-        autoIncreaseGold += increasingGoldAddValue;        
-        increasingGoldAddValue *= addValueIncreaseRate;
-        Debug.Log(autoIncreaseGold);
+        if (GameManager.Instance.CheckCost())
+        {
+            autoIncreaseGold += increasingGoldAddValue;
+            increasingGoldAddValue *= addValueIncreaseRate;
+        }
     }
 
     public void ClickDecreaseEarnGoldTime()
     {
-        autoIncreasingGoldTime *= autoIncreasingGoldTimeDecreaseRate;
+        if (GameManager.Instance.CheckCost())
+            autoIncreasingGoldTime *= autoIncreasingGoldTimeDecreaseRate;
     }
 
     IEnumerator AutoIncreaseGold()

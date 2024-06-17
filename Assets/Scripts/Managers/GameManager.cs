@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -16,6 +17,12 @@ public class GameManager : MonoBehaviour
     public Monster monster;
 
     HealthSystem monsterHealthSystem;
+
+    public Action OnGoldChanged;
+
+    public GameObject particlePrefab; 
+
+    [SerializeField] RequireGoldIndicator requireGoldIndicator;
 
     private void Awake()
     {
@@ -38,11 +45,30 @@ public class GameManager : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, transform.forward, 10);
+        Debug.Log(mousePos);
+
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, transform.forward, 0);
         if(hit)
         {
+            GameObject go = Instantiate(particlePrefab);
+            go.transform.position = mousePos + Vector3.forward * 10;
+
+            Destroy(go, 1f);
             monsterHealthSystem.ChangeHealth(player.playerStat.attackDamage);
         }
+    }
+
+    public bool CheckCost()
+    {
+        if(requireGoldIndicator.UpgradeGold > player.gold)
+        {
+            return false;
+        }
+
+        player.gold -= requireGoldIndicator.UpgradeGold;
+        requireGoldIndicator.IncreaseUpgradeCost();
+        OnGoldChanged?.Invoke();
+        return true;
     }
 
     IEnumerator AutoClick()

@@ -10,6 +10,14 @@ public class WindowsManager : MonoBehaviour
 
     public void SetSelectWindowActiveOn(int idx)
     {
+        if(nowOnWindow == windows[idx])
+        {
+            nowOnWindow.SetActive(false);
+            nowOnWindow = null;
+
+            return;
+        }
+
         SetUnselectedActiveOff();
         nowOnWindow = windows[idx];
         nowOnWindow.SetActive(true);

@@ -10,6 +10,7 @@ public class GoldIndicator : MonoBehaviour
     private void Start()
     {
         goldText.text = "0";
+        GameManager.Instance.OnGoldChanged += UpdateGoldUI;
         GameManager.Instance.monster.monsterHelthSystem.OnDeath += UpdateGoldUI;
     }
 

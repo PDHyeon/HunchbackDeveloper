@@ -8,7 +8,7 @@ public class StageIndicator : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI stageText;
 
-    int stageIdx = 1;
+    public int stageIdx = 1;
 
     private void Start()
     {

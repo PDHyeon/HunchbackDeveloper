@@ -10,7 +10,7 @@ public class RequireGoldIndicator : MonoBehaviour
     public float UpgradeGold = 100;
     private float UpgradeGoldIncreaseRate = 1.1f;
 
-    private void Awake()
+    private void Start()
     {
         UpdateRequireGoldUI();
     }

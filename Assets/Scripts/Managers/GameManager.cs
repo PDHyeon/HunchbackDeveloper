@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject particlePrefab; 
 
-    [SerializeField] RequireGoldIndicator requireGoldIndicator;
+    public RequireGoldIndicator requireGoldIndicator;
+    public StageIndicator stageIndicator;
+    EarnGoldUpgrade earnGold;
 
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<Monster>();
         monsterHealthSystem = monster.monsterHelthSystem;
+        earnGold = GetComponent<EarnGoldUpgrade>();
     }
 
     private void Start()
@@ -44,8 +47,6 @@ public class GameManager : MonoBehaviour
     {
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-
-        Debug.Log(mousePos);
 
         RaycastHit2D hit = Physics2D.Raycast(mousePos, transform.forward, 0);
         if(hit)
@@ -78,5 +79,18 @@ public class GameManager : MonoBehaviour
             monsterHealthSystem.ChangeHealth(player.playerStat.autoAttackDamage);
             yield return new WaitForSeconds(player.playerStat.autoAttackSpeed);
         }
+    }
+
+    public void InitializeSet(float gold, int nowStage, float tapAttackDamage, 
+                              float autoAttackDamage, float autoAttackFrequency,
+                              float autoIncreaseGold, float autoIncreaseGoldFrequency,
+                              float upgradeRequireGold)
+    {
+        player.gold = gold;
+        stageIndicator.stageIdx = nowStage;
+        player.playerStat.InitializeSetting(tapAttackDamage, autoAttackDamage, autoAttackFrequency);
+        earnGold.autoIncreaseGold = autoIncreaseGold;
+        earnGold.autoIncreasingGoldTime = autoIncreaseGoldFrequency;
+        requireGoldIndicator.UpgradeGold = upgradeRequireGold;
     }
 }

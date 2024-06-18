@@ -6,10 +6,10 @@ public class EarnGoldUpgrade : MonoBehaviour
 {
     [SerializeField] GoldIndicator goldIndicator;
 
-    private float autoIncreaseGold = 0f;
+    public float autoIncreaseGold { get; set; } = 0f;
     private float increasingGoldAddValue = 1f;
     private float addValueIncreaseRate = 1.05f;
-    private float autoIncreasingGoldTime = 1f;
+    public float autoIncreasingGoldTime { get; set; } = 1f;
     private float autoIncreasingGoldTimeDecreaseRate = 0.98f;
 
     private void Start()
@@ -40,5 +40,11 @@ public class EarnGoldUpgrade : MonoBehaviour
 
             yield return new WaitForSeconds(autoIncreasingGoldTime);
         }
+    }
+
+    public void InitSet()
+    {
+        autoIncreaseGold = 0f;
+        autoIncreasingGoldTime = 1f;
     }
 }

@@ -42,4 +42,11 @@ public class PlayerStat : CharacterStat
     {
         autoAttackSpeed *= autoAttackSpeedIncreseAmount;
     }
+
+    public void InitializeSetting(float tapAttackDamage = 1f, float autoAttackDamage = 0f, float autoAttackFrequency = 1f)
+    {
+        attackDamage = tapAttackDamage;
+        this.autoAttackDamage = autoAttackDamage;
+        this.autoAttackSpeed = autoAttackFrequency;
+    }
 }
